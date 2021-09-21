@@ -9,8 +9,8 @@ soluciones = ubicacionSolucion
 nombreArchivo = pedirNombreArchivo()
 
 for i in range(N):
-    colNum = str(i)
-    celdas.append("Col" + colNum)
+    celdas.append("Col" + str(i+1))
+    
 
 with open(nombreArchivo + ".csv","w", newline='') as csvfile:
    
