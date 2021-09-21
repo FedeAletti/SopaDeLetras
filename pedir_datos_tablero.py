@@ -1,30 +1,32 @@
 from pedir_dato import pedir_dato
 import math
 
-lista_palabras = []
-archivo_nombre = ""
-N = pedir_dato(int(input("Ingresar un número mayor o igual a 15: ")))
-numero_de_palabras = math.floor(N / 3) - 1
+# Se crea el array de palabras a encontrar y el nombre del archivo
+listaPalabras = []
+archivoNombre = ""
 
- 
+# Se pide el valor de N a utilizar para crear la matriz
+N = pedir_dato(int(input("Ingresar un número mayor o igual a 15: ")))
+# Se setea la cantidad de palabras
+numeroDePalabras = math.floor(N / 3) - 1
 
 def pedir_datos_tablero():
 
-    for i in range(numero_de_palabras):
+    for i in range(numeroDePalabras):
 
-        palabra = input("Ingresar las palabras: ")
+        palabra = (input("Ingresar las palabras: ").lower())
         if len(palabra) > (N / 3):
             print("la palabra no se puede incluir en la sopa de letras")
         elif palabra == "fin":
             break
         else:
-            lista_palabras.append(palabra)
+            listaPalabras.append(palabra)
 
-        print(lista_palabras)
+        print(listaPalabras)
 
 
 def pedirNombreArchivo():
-    archivo_nombre = input("Nombre del archivo: ")
-    if len(archivo_nombre) <= 30:
-        return archivo_nombre
-    else: pedirNombreArchivo()    
+    archivoNombre = input("Nombre del archivo: ")
+    if len(archivoNombre) <= 30:
+        return archivoNombre
+    else: pedirNombreArchivo("ERROR, el nombre del archivo es muy largo, intentar de nuevo: ")    

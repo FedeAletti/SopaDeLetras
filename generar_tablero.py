@@ -1,31 +1,12 @@
-# from pedir_datos_tablero import pedir_datos_tablero, N 
-# import random
-
-
-# def generar_tablero(fila, col):
- 
-#     for i in range(fila):
-#         listaFila = []        
-#         for j in range(col):
-#             listaFila.append(random.choice("abcdefghijklmnopqrstuvwxyz"))
-#         matriz.append(listaFila)
-            
-#     return matriz
-
-
-# matriz = []
-# generar_tablero(N,N)
-
-
-# ____________________________________________________________________________
-from pedir_datos_tablero import pedir_datos_tablero, N, lista_palabras
+from pedir_datos_tablero import N, listaPalabras
 
 import random 
-import string
 
 tableroTamaño = N
-palabras = lista_palabras
+palabras = listaPalabras
+ubicacionSolucion = []
 
+# Se crea la matriz y llena con guiones
 tablero = [['_' for _ in range (tableroTamaño)] for _ in range(tableroTamaño)]
 
 def generar_tablero():
@@ -65,6 +46,8 @@ def generar_tablero():
             if ending_x < 0 or ending_x >= tableroTamaño: continue
             if ending_y < 0 or ending_y >= tableroTamaño: continue
 
+            ubicacionSolucion.append({"Palbra: " + palabra + " | X Inicial: "+ str(y_position+1) + " | Y Inicial: " + str(x_position+1) + " | X Final: " + str(ending_y+1) + " | Y Final: " + str(ending_x+1)})
+
             # Estado de fallo al ubicar en falso por defecto
             falloAlUbicar = False
 
@@ -72,15 +55,15 @@ def generar_tablero():
                 caracter = palabra[i]
                 
                 # Asignando al caracter en una nueva posición
-                new_position_x = x_position + i * paso_x
-                new_position_y = y_position + i * paso_y
+                newPosition_x = x_position + i * paso_x
+                newPosition_y = y_position + i * paso_y
 
                 # Ubicando caracter en fila - columna dentro de la matriz
-                nueva_posicion_caracter = tablero[new_position_x][new_position_y]
+                nuevaPosicionCaracter = tablero[newPosition_x][newPosition_y]
 
                 # Revisa no pisar otro caracter / salirse del tablero
-                if nueva_posicion_caracter != '_':
-                    if nueva_posicion_caracter == caracter: continue
+                if nuevaPosicionCaracter != '_':
+                    if nuevaPosicionCaracter == caracter: continue
                 else:
                     falloAlUbicar = True
                     break
@@ -98,14 +81,6 @@ def generar_tablero():
                 # Cambio de estado de Ubicado a true para finalizar bucle
                 ubicado = True
             
-
-
-
-
-
-
-        # for x in range(tableroTamaño):
-        #     print (' '.join(tablero[x]))
     return tablero
     
 # Reemplazo de espacios por letras en random
@@ -113,7 +88,3 @@ for x in range(tableroTamaño):
     for y in range(tableroTamaño):
         if (tablero[x][y] == '_'):
             tablero[x][y] = random.choice("abcdefghijklmnopqrstuvwxyz")
-# Orientacion
-
-#Impresion
-# generar_tablero()
